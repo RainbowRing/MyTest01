@@ -45,8 +45,8 @@ rm -rf $TOMCAT_PATH/webapps/MyTest01
 cp -r $PROJECT_PATH/MyTest01 $TOMCAT_PATH/webapps/
 
 # 重命名工程
-cd $TOMCAT_PATH/webapps/
-mv MyTest01 myTest01
+#cd $TOMCAT_PATH/webapps/
+#mv MyTest01 myTest01
 
 # 启动Tomcat
 cd $TOMCAT_PATH/
