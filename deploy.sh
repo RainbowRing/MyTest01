@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+#git同步最新代码 > maven 打包 > 停止tomcat > 部署应用 > 启动tomcat
 #编译+部署order站点
 
 # 需要配置如下参数
@@ -8,7 +9,7 @@
 # 输入你的环境上tomcat的全路径
 # export TOMCAT_PATH=tomcat在部署机器上的路径
 
-### base 函数
+### 函数:关闭tomcat
 killTomcat()
 {
     pid=`ps -ef|grep tomcat|grep java|awk '{print $2}'`
@@ -21,8 +22,13 @@ killTomcat()
     fi
 }
 
+# 删除本地旧代码
+rm -f $PROJECT_PATH/MyTest01
+# 拉取新代码
+git clone git@github.com:RainbowRing/MyTest01.git
+
 # 构建项目
-cd $PROJECT_PATH/MyTest01
+#cd $PROJECT_PATH/MyTest01
 #mvn clean install
 
 # 停止tomcat
@@ -33,9 +39,9 @@ killTomcat
 # rm -f $TOMCAT_PATH/webapps/ROOT.war
 # rm -f $TOMCAT_PATH/webapps/MyTest01.war
 
-# 复制工程到tomcat
+# 复制工程(文件夹)到tomcat
 # cp $PROJECT_PATH/order/target/order.war $TOMCAT_PATH/webapps/
-cp $PROJECT_PATH/MyTest01 $TOMCAT_PATH/webapps/
+cp -r $PROJECT_PATH/MyTest01 $TOMCAT_PATH/webapps/
 
 # 重命名工程
 cd $TOMCAT_PATH/webapps/
