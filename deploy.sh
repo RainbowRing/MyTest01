@@ -23,8 +23,9 @@ killTomcat()
 }
 
 # 删除本地旧代码
-rm -f $PROJECT_PATH/MyTest01
+rm -rf $PROJECT_PATH/MyTest01
 # 拉取新代码
+cd $PROJECT_PATH
 git clone git@github.com:RainbowRing/MyTest01.git
 
 # 构建项目
@@ -35,7 +36,7 @@ git clone git@github.com:RainbowRing/MyTest01.git
 killTomcat
 
 # 删除原有工程
-# rm -rf $TOMCAT_PATH/webapps/ROOT
+rm -rf $TOMCAT_PATH/webapps/MyTest01
 # rm -f $TOMCAT_PATH/webapps/ROOT.war
 # rm -f $TOMCAT_PATH/webapps/MyTest01.war
 
